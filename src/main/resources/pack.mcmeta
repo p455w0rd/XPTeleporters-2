@@ -1,0 +1,12 @@
+{
+  "pack": {
+    "pack_format": 3,
+    "description": "XPTeleporter Resources"
+  },
+  "language": {
+     "en_US": {
+        "name": "English",
+        "region": "United States"
+     }
+  }
+}

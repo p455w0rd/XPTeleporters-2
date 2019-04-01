@@ -1,0 +1,22 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "xpt:teleporter"
+	},
+	"variants": {
+		"type": {	
+			"normal": {
+				"textures": {
+					"particle": "xpt:blocks/teleporter",
+					"all": "xpt:blocks/teleporter"
+				}
+			},
+			"efficient": {
+				"textures": {
+					"particle": "xpt:blocks/efficient_teleporter",
+					"all": "xpt:blocks/efficient_teleporter"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,64 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+version = version_mc + "-" + getModVersion()
+group = mod_group
+archivesBaseName = "XPTeleporters"
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+minecraft {
+    version = version_mc + "-" + version_forge
+    runDir = mcp_run_dir
+	mappings = "snapshot_20171003"
+}
+
+processResources {
+	inputs.property "version", project.version
+	inputs.property "mcversion", project.minecraft.version
+
+	from (sourceSets.main.resources.srcDirs) {
+		include "mcmod.info"
+		expand "version": project.version, "mcversion": project.minecraft.version
+	}
+		
+	from (sourceSets.main.resources.srcDirs) {
+		exclude "mcmod.info"
+	}
+}
+
+String getModVersion() {
+	String major = "0";
+	String revision = "0";
+	String patch = "0";
+	String prefix = "public static final String MOD_VERSION = \"";
+	File file = file("src/main/java/latmod/xpt/init/ModGlobals.java")
+	file.eachLine { String s ->
+		s = s.trim();
+		if (s.startsWith(prefix)) {
+			s = s.substring(prefix.length(), s.length() - 2);
+			String[] pts = s.split("\\.");
+
+			major = pts[0];
+			revision = pts[1];
+			patch = pts[2];
+		}
+	}
+	return "$major.$revision.$patch";
+}

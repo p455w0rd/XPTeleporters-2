@@ -1,0 +1,5 @@
+{
+	"conditions": {
+		"recipes_enabled": "latmod.xpt.init.RecipesEnabledFactory"
+	}
+}
