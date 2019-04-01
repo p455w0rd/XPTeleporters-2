@@ -225,4 +225,28 @@ public class XPTUtils {
 		return xptTile != null && xptTile.getWorld() != null && xptTile.getWorld().getBlockState(xptTile.getPos()) != null && isEfficient(xptTile.getWorld().getBlockState(xptTile.getPos()));
 	}
 
+	public static String capitaliseAllWords(final String str) {
+		if (str == null) {
+			return null;
+		}
+		final int sz = str.length();
+		final StringBuilder buffer = new StringBuilder(sz);
+		boolean space = true;
+		for (int i = 0; i < sz; i++) {
+			final char ch = str.charAt(i);
+			if (Character.isWhitespace(ch)) {
+				buffer.append(ch);
+				space = true;
+			}
+			else if (space) {
+				buffer.append(Character.toTitleCase(ch));
+				space = false;
+			}
+			else {
+				buffer.append(ch);
+			}
+		}
+		return buffer.toString();
+	}
+
 }

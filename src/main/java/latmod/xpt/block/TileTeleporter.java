@@ -2,8 +2,6 @@ package latmod.xpt.block;
 
 import javax.annotation.Nullable;
 
-import org.codehaus.plexus.util.StringUtils;
-
 import latmod.xpt.init.ModConfig;
 import latmod.xpt.init.ModObjects;
 import latmod.xpt.item.ItemLinkCard;
@@ -330,7 +328,7 @@ public class TileTeleporter extends TileEntity implements ITickable {
 		if (name.isEmpty()) {
 			if (linkedDim != getDimension()) {
 				name = XPTUtils.getDimName(linkedDim);
-				name = StringUtils.capitaliseAllWords(name.replaceAll("_", " "));
+				name = XPTUtils.capitaliseAllWords(name.replaceAll("_", " "));
 			}
 			name = " " + name;
 			name = name + "\nX: " + linkedX + ", Y: " + linkedY + ", Z:" + linkedZ;
