@@ -46,7 +46,7 @@ processResources {
 
 jar {
 	manifest {
-	    attributes 'FMLAT': 'danknull_at.cfg'
+	    attributes 'FMLAT': 'xpt_at.cfg'
 	}
 }
 

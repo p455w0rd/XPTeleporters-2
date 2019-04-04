@@ -48,6 +48,11 @@ public class TileTeleporter extends TileEntity implements ITickable {
 
 	@Override
 	public void readFromNBT(final NBTTagCompound tag) {
+		readNBT(tag);
+		super.readFromNBT(tag);
+	}
+
+	public void readNBT(final NBTTagCompound tag) {
 		if (tag.hasKey(Tags.LINK) && tag.hasKey(Tags.TIMER)) {
 			final int[] link = tag.getIntArray(Tags.LINK);
 			final int[] timer = tag.getIntArray(Tags.TIMER);
@@ -58,15 +63,8 @@ public class TileTeleporter extends TileEntity implements ITickable {
 			cooldown = timer[0];
 			maxCooldown = timer[1];
 		}
-		super.readFromNBT(tag);
-
 		if (tag.hasKey(Tags.NAME, NBT.TAG_STRING)) {
 			name = tag.getString(Tags.NAME);
-		}
-
-		//TODO remove
-		if (tag.hasKey(Tags.NAME.toLowerCase(), NBT.TAG_STRING)) {
-			name = tag.getString(Tags.NAME.toLowerCase());
 		}
 	}
 
@@ -87,19 +85,7 @@ public class TileTeleporter extends TileEntity implements ITickable {
 	@Override
 	public void onDataPacket(final NetworkManager net, final SPacketUpdateTileEntity pkt) {
 		final NBTTagCompound tag = pkt.getNbtCompound();
-		final int[] link = tag.getIntArray(Tags.LINK);
-		final int[] timer = tag.getIntArray(Tags.TIMER);
-		linkedX = link[0];
-		linkedY = link[1];
-		linkedZ = link[2];
-		linkedDim = link[3];
-		cooldown = timer[0];
-		maxCooldown = timer[1];
-		name = tag.getString(Tags.NAME);
-		//TODO remove
-		if (name.isEmpty()) {
-			name = tag.getString(Tags.NAME.toLowerCase());
-		}
+		readNBT(tag);
 		getWorld().markBlockRangeForRenderUpdate(getPos(), getPos());
 	}
 
@@ -205,7 +191,7 @@ public class TileTeleporter extends TileEntity implements ITickable {
 			if (ModConfig.only_linking_uses_xp) {
 				final boolean crossdim = pos[3] != getDimension();
 				if (crossdim) {
-					xp = ModConfig.xp_for_crossdim;
+					xp = ModConfig.xp_for_crossdim * ModConfig.getDestinationMuliplier(pos[3]);
 				}
 				else {
 					final double dist = Math.sqrt(getDistanceSq(pos[0] + 0.5, pos[1] + 0.5, pos[2] + 0.5));

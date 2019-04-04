@@ -33,8 +33,8 @@ public class ModConfig extends Configuration {
 	}
 
 	public static void init() {
-		xp_for_1000_blocks = getInstance().getInt("xp_for_1000_blocks", CATEGORY_GENERAL, 20, 0, 200, I18n.translateToLocal("configdesc.xpt.xp_required") + " " + I18n.translateToLocal("configdesc.xpt.samedim"));
-		xp_for_crossdim = getInstance().getInt("xp_for_crossdim", CATEGORY_GENERAL, 30, 0, 200, I18n.translateToLocal("configdesc.xpt.xp_required") + " " + I18n.translateToLocal("configdesc.xpt.crossdim"));
+		xp_for_1000_blocks = getInstance().getInt("xp_for_1000_blocks", CATEGORY_GENERAL, 20, 0, Integer.MAX_VALUE, I18n.translateToLocal("configdesc.xpt.xp_required") + " " + I18n.translateToLocal("configdesc.xpt.samedim"));
+		xp_for_crossdim = getInstance().getInt("xp_for_crossdim", CATEGORY_GENERAL, 30, 0, Integer.MAX_VALUE, I18n.translateToLocal("configdesc.xpt.xp_required") + " " + I18n.translateToLocal("configdesc.xpt.crossdim"));
 		cooldown_seconds = getInstance().getInt("cooldown_seconds", CATEGORY_GENERAL, 3, 1, 3600, I18n.translateToLocal("configdesc.xpt.teleporter_cooldown"));
 		enable_crafting = getInstance().getBoolean("enable_crafting", CATEGORY_GENERAL, true, I18n.translateToLocal("configgdesc.xpt.enable_recipes"));
 		only_linking_uses_xp = getInstance().getBoolean("only_linking_uses_xp", CATEGORY_GENERAL, false, I18n.translateToLocal("configdesc.xpt.only_linking_uses_xp"));

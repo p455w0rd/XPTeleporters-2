@@ -31,8 +31,9 @@ public class XPTUtils {
 	static Map<Integer, String> dimNameList = new HashMap<>();
 
 	public static int getXpCost(final double distance, final boolean crossDim, final int dimension, final boolean isEfficient) {
+		int result = ModConfig.getDestinationMuliplier(dimension);
 		if (crossDim) {
-			final int result = ModConfig.xp_for_crossdim * ModConfig.getDestinationMuliplier(dimension);
+			result *= ModConfig.xp_for_crossdim;
 			if (!isEfficient) {
 				return result;
 			}
@@ -40,7 +41,7 @@ public class XPTUtils {
 			e = e < 1 ? 1 : e;
 			return e;
 		}
-		final int result = ModConfig.xp_for_1000_blocks > 0 ? MathHelper.ceil(ModConfig.xp_for_1000_blocks * distance / 1000.0) : 0;
+		result *= ModConfig.xp_for_1000_blocks > 0 ? MathHelper.ceil(ModConfig.xp_for_1000_blocks * distance / 1000.0) : 0;
 		if (!isEfficient) {
 			return result;
 		}
