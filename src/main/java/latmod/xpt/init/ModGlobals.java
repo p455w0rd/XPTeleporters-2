@@ -10,7 +10,7 @@ public class ModGlobals {
 
 	public static final String MOD_ID = "xpt";
 	public static final String MOD_NAME = "XPTeleporters 2";
-	public static final String MOD_VERSION = "2.0.0";
+	public static final String MOD_VERSION = "2.0.1";
 	public static final File MOD_CONFIG_FILE = new File("config/" + MOD_ID + ".cfg");
 
 }
