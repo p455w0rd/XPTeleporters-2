@@ -46,7 +46,7 @@ public class RenderTeleporter extends TileEntitySpecialRenderer<TileTeleporter> 
 		GL11.glPushAttrib(8192);
 		final float lastBrightnessX = OpenGlHelper.lastBrightnessX;
 		final float lastBrightnessY = OpenGlHelper.lastBrightnessY;
-		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0f, 240.0f);
+		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0f, 0.0f);
 		GL11.glTranslated(rx + 0.5, ry + 0.0, rz + 0.5);
 		GL11.glScalef(-1.0f, -1.0f, 1.0f);
 		GL11.glRotated(-Math.atan2(t.getPos().getX() + 0.5 - mc.getRenderManager().viewerPosX, t.getPos().getZ() + 0.5 - mc.getRenderManager().viewerPosZ) * 180.0 / 3.141592653589793, 0.0, 1.0, 0.0);
@@ -114,6 +114,7 @@ public class RenderTeleporter extends TileEntitySpecialRenderer<TileTeleporter> 
 			final String[] lines = name.split("\n");
 			mc.fontRenderer.drawString(lines[0], -mc.fontRenderer.getStringWidth(lines[0]) / 2, -18, new Color(255, 255, 255, (int) (alpha * 255.0f + 0.5f)).getRGB());
 			mc.fontRenderer.drawString(lines[1], -mc.fontRenderer.getStringWidth(lines[1]) / 2, -8, new Color(255, 255, 255, (int) (alpha * 255.0f + 0.5f)).getRGB());
+			//GL11.glEnable(GL11.GL_LIGHTING);
 			GL11.glPopAttrib();
 			GL11.glPopMatrix();
 		}

@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  *
  */
 @SideOnly(Side.CLIENT)
-@EventBusSubscriber(modid = ModGlobals.MOD_ID)
+@EventBusSubscriber(modid = ModGlobals.MOD_ID, value = Side.CLIENT)
 public class ModEventsClient {
 
 	@SubscribeEvent

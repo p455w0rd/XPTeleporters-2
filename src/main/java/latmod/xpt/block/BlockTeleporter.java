@@ -31,6 +31,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockTeleporter extends Block implements IModelRegister, ITileEntityProvider {
 
@@ -162,6 +164,7 @@ public class BlockTeleporter extends Block implements IModelRegister, ITileEntit
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel() {
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, XPTUtils.getMRL(REG_NAME, Type.NORMAL.getBlockStateVariant()));
@@ -174,6 +177,7 @@ public class BlockTeleporter extends Block implements IModelRegister, ITileEntit
 		return createTileEntity(world, getStateFromMeta(meta));
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public EnumBlockRenderType getRenderType(final IBlockState state) {
 		return EnumBlockRenderType.MODEL;
