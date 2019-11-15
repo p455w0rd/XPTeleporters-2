@@ -14,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SPacketEntityStatus;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.MathHelper;
@@ -154,7 +155,14 @@ public class XPTUtils {
 
 	public static String getDimName(final int id) {
 		if (!dimNameList.containsKey(id)) {
-			dimNameList.put(id, FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(id).provider.getDimensionType().getName());
+			String dimName = "<unnamed>";
+			final MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+			if (server != null) {
+				if (server.getWorld(id) != null && server.getWorld(id).provider != null) {
+					dimName = server.getWorld(id).provider.getDimensionType().getName();
+				}
+			}
+			dimNameList.put(id, dimName);
 		}
 		return dimNameList.get(id);
 	}
